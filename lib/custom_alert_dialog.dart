@@ -37,7 +37,7 @@ class CustomAlertDialog{
            content: Column(
              mainAxisSize: MainAxisSize.min,
              children: [
-               Text(content, style: Theme.of(context).textTheme.headline3,),
+               Text(content, style: Theme.of(context).textTheme.headline3, textAlign: TextAlign.center,),
                SizedBox(
                  height: 15.0,
                ),
