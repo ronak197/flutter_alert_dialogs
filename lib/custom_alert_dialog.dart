@@ -1,16 +1,39 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomAlertDialog{
 
-  showWarningDialog( BuildContext context, Function onYesTap, Function onNoTap, {String title = "Warning", String content = "Are you sure you want to quit this simulation"}) {
+  final alertShape = RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10.0),
+      side: BorderSide(
+          color: Colors.grey
+      )
+  );
+
+  final buttonShape = RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8.0)
+  );
+
+  final bgColor = Colors.black45.withOpacity(0.5);
+
+  final titlePadding = const EdgeInsets.only(top: 15.0, bottom: 10.0, left: 10.0, right: 10.0);
+
+  final contentPadding = const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0);
+
+  final buttonPadding = const EdgeInsets.symmetric(vertical: 8.0);
+
+  final buttonColor = Colors.lightBlueAccent;
+
+  showWarningDialog( BuildContext context, Function onYesTap, Function onNoTap, {String title = "Warning", String content = "Are you sure you want to quit this simulation?"}) {
     showDialog(
       context: context,
       builder: (context){
          return AlertDialog(
-           backgroundColor: Colors.black45.withOpacity(0.5),
+           backgroundColor: bgColor,
            title: Text(title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline6,),
-           titlePadding: EdgeInsets.only(top: 15.0, bottom: 10.0),
-           contentPadding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
+           titlePadding: titlePadding,
+           contentPadding: contentPadding,
+           shape: alertShape,
            content: Column(
              mainAxisSize: MainAxisSize.min,
              children: [
@@ -24,16 +47,14 @@ class CustomAlertDialog{
                    Expanded(
                      flex: 1,
                      child: MaterialButton(
-                       padding: EdgeInsets.symmetric(vertical: 12.0),
-                       shape: RoundedRectangleBorder(
-                           borderRadius: BorderRadius.circular(8.0)
-                       ),
-                       color: Colors.grey[200],
+                       padding: buttonPadding,
+                       shape: buttonShape,
+                       color: buttonColor,
                        onPressed: (){
                          Navigator.of(context).pop();
                          onYesTap();
                        },
-                       child: Text("Yes", style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.black, fontWeight: FontWeight.bold  ),),
+                       child: Text("YES", style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.white,   ),),
                      ),
                    ),
                    Padding(
@@ -42,166 +63,137 @@ class CustomAlertDialog{
                    Expanded(
                      flex: 1,
                      child: MaterialButton(
-                       padding: EdgeInsets.symmetric(vertical: 12.0),
+                       padding: buttonPadding,
                        shape: RoundedRectangleBorder(
                            borderRadius: BorderRadius.circular(8.0)
                        ),
-                       color: Colors.lightBlueAccent,
+                       color: buttonColor,
                        onPressed: (){
                          Navigator.of(context).pop();
                          onNoTap();
                        },
-                       child: Text("No", style: Theme.of(context).textTheme.headline3.copyWith(fontWeight: FontWeight.bold )),
+                       child: Text("NO", style: Theme.of(context).textTheme.headline3.copyWith( )),
                      ),
                    ),
                  ],
                )
              ],
            ),
-           shape: RoundedRectangleBorder(
-             borderRadius: BorderRadius.circular(15.0)
-           ),
          );
       }
     );
   }
 
-  showInstructionAlert( BuildContext context, Function onOkTap, {String title = "Start drilling operation and detect a kick warning sign"}) {
+  showInstructionAlert( BuildContext context, Function onOkTap, {String title = "Start drilling operation and detect a kick warning sign."}) {
     showDialog(
         context: context,
         builder: (context){
           return AlertDialog(
-            backgroundColor: Colors.black45.withOpacity(0.5),
+            backgroundColor: bgColor,
             title: Text(title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline4,),
-            titlePadding: EdgeInsets.only(top: 15.0, bottom: 10.0),
-            contentPadding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
+            titlePadding: titlePadding,
+            contentPadding: contentPadding,
+            shape: alertShape,
+            actionsPadding: EdgeInsets.only(right: 5.0),
             content: Column(
               mainAxisSize: MainAxisSize.min,
-              children: [
-                SizedBox(
-                  height: 15.0,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: MaterialButton(
-                        padding: EdgeInsets.symmetric(vertical: 12.0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0)
-                        ),
-                        color: Colors.grey[200],
-                        onPressed: (){
-                          Navigator.of(context).pop();
-                          onOkTap();
-                        },
-                        child: Text("Ok", style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.black, fontWeight: FontWeight.bold ),),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0)
-            ),
+            children: [
+              MaterialButton(
+                padding: buttonPadding.copyWith(top: 5.0, bottom: 5.0),
+                shape: buttonShape,
+                color: buttonColor,
+                onPressed: (){
+                  Navigator.of(context).pop();
+                  onOkTap();
+                },
+                child: Text("OK", style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.white,  ),),
+              )
+            ],
+          )
           );
         }
     );
   }
 
-  showSuccessfulActionAlert( BuildContext context, Function onOkTap, {String title = "Congratulations!", String content = "You have successfully recorded SIDPP"}) {
+  showSuccessfulActionAlert( BuildContext context, Function onOkTap, {String title = "Congratulations!", String content = "You have successfully recorded SIDPP."}) {
     showDialog(
         context: context,
         builder: (context){
           return AlertDialog(
-            backgroundColor: Colors.black45.withOpacity(0.5),
-            title: Text(title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),),
-            titlePadding: EdgeInsets.only(top: 15.0, bottom: 10.0),
-            contentPadding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
+            backgroundColor: bgColor,
+            title: Text(title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline5.copyWith(),),
+            titlePadding: titlePadding,
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(content, style: Theme.of(context).textTheme.headline3,),
-                SizedBox(
-                  height: 15.0,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: MaterialButton(
-                        padding: EdgeInsets.symmetric(vertical: 12.0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0)
-                        ),
-                        color: Colors.grey[200],
-                        onPressed: (){
-                          Navigator.of(context).pop();
-                          onOkTap();
-                        },
-                        child: Text("Ok", style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.black, fontWeight: FontWeight.bold ),),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0)
-            ),
+              Padding(
+                padding: contentPadding,
+                child: Text(content, style: Theme.of(context).textTheme.headline3, textAlign: TextAlign.center,),
+              ),
+              MaterialButton(
+                padding: buttonPadding,
+                shape: buttonShape,
+                color: buttonColor,
+                onPressed: (){
+                  Navigator.of(context).pop();
+                  onOkTap();
+                },
+                child: Text("OK", style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.white,  ),),
+              )
+            ],
+          ),
+            shape: alertShape,
           );
         }
     );
   }
 
-  showSaveDataAlert( BuildContext context, List<Function> clickActions, { List<String> actions = const ["Email Score", "Quit", "Go Back"], String title = "Save Your Data", String content = "Would you like to email your score report before you quit"}) {
+  showSaveDataAlert( BuildContext context, List<Function> clickActions, { List<String> actions = const ["Email Score", "Quit", "Go Back"], String title = "Save Your Data", String content = "Would you like to email your score report before you quit?"}) {
     showDialog(
         context: context,
         builder: (context){
           return AlertDialog(
-            backgroundColor: Colors.black45.withOpacity(0.5),
-            title: Text(title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),),
-            titlePadding: EdgeInsets.only(top: 15.0, bottom: 10.0),
-            contentPadding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
+            backgroundColor: bgColor,
+            title: Text(title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline5.copyWith(),),
+            titlePadding: titlePadding,
+            contentPadding: contentPadding,
+            shape: alertShape,
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(content, style: Theme.of(context).textTheme.headline3, textAlign: TextAlign.center,),
                 SizedBox(
-                  height: 15.0,
+                  height: 10.0,
                 ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
+                Row(
+                  mainAxisSize: MainAxisSize.max,
                   children: List.generate(actions.length, (index){
-                    return MaterialButton(
-                      minWidth: double.maxFinite,
-                      padding: EdgeInsets.symmetric(vertical: 12.0),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0)
+                    return Expanded(
+                      flex: 1,
+                      child: Container(
+                        margin: EdgeInsets.only(right: 5.0),
+                        child: MaterialButton(
+                          padding: buttonPadding,
+                          shape: buttonShape,
+                          color: buttonColor,
+                          onPressed: (){
+                            Navigator.of(context).pop();
+                            clickActions[index]();
+                          },
+                          child: Text(actions[index].toUpperCase(), style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.white, fontSize: 13.0 ), textAlign: TextAlign.center, maxLines: 1,),
+                        ),
                       ),
-                      color: Colors.grey[200],
-                      onPressed: (){
-                        Navigator.of(context).pop();
-                        clickActions[index]();
-                      },
-                      child: Text(actions[index], style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.black, fontWeight: FontWeight.bold ),),
                     );
                   }),
                 )
               ],
-            ),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0)
             ),
           );
         }
     );
   }
 
-  showNumericDataAlert( BuildContext context, Function(int value) onValidateTap, {String title = "Enter a suitable value"}) {
+  showNumericDataAlert( BuildContext context, Function(int value) onValidateTap, {String title = "Enter a suitable value."}) {
 
     String content = "";
     TextEditingController textEditingController = TextEditingController();
@@ -212,48 +204,47 @@ class CustomAlertDialog{
           return StatefulBuilder(
             builder: (context, dialogState){
               return AlertDialog(
-                backgroundColor: Colors.black45.withOpacity(0.5),
-                title: Text(title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),),
-                titlePadding: EdgeInsets.only(top: 15.0, bottom: 10.0),
-                contentPadding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    content != "" ? Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0),
-                      child: Text(content, style: Theme.of(context).textTheme.headline3,),
-                    ) : SizedBox(),
-                    TextFormField(
-                      controller: textEditingController,
-                      style: Theme.of(context).textTheme.headline2,
-                      keyboardType: TextInputType.numberWithOptions(decimal: false, signed: true),
-                      decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 15.0,),
-                          border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                          borderSide: BorderSide(
-                            color: Colors.green,
-                            width: 2.0
-                          )
-                        ),
-                        hintText: "Enter a value",
-                        hintStyle: Theme.of(context).textTheme.headline2.copyWith(color: Colors.grey)
+                backgroundColor: bgColor,
+                contentPadding: contentPadding,
+                content: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Padding(
+                        padding: titlePadding,
+                        child: Text(title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline5.copyWith(),),
                       ),
-                    ),
-                    SizedBox(
-                      height: 15.0,
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: MaterialButton(
-                            padding: EdgeInsets.symmetric(vertical: 12.0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0)
-                            ),
-                            color: Colors.grey[200],
+                      content != "" ? Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: Text(content, style: Theme.of(context).textTheme.headline3,),
+                      ) : SizedBox(
+                        height: 10.0,
+                      ),
+                      TextField(
+                        controller: textEditingController,
+                        style: Theme.of(context).textTheme.headline4.copyWith(color: Colors.black),
+                        keyboardType: TextInputType.numberWithOptions(decimal: false, signed: true),
+                        decoration: InputDecoration(
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          filled: true,
+                          contentPadding: EdgeInsets.symmetric(horizontal: 15.0,),
+                          hintText: "Enter a value",
+                          hintStyle: Theme.of(context).textTheme.headline2.copyWith(color: Colors.grey)
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          MaterialButton(
+                            padding: buttonPadding.copyWith(left: 15.0, right: 15.0),
+                            shape: buttonShape,
+                            color: buttonColor,
                             onPressed: (){
                               if(textEditingController.text.isEmpty){
                                 dialogState((){
@@ -261,9 +252,9 @@ class CustomAlertDialog{
                                 });
                               } else {
                                 try {
-                                 int value = int.parse(textEditingController.text);
-                                 Navigator.of(context).pop();
-                                 onValidateTap(value);
+                                  int value = int.parse(textEditingController.text);
+                                  Navigator.of(context).pop();
+                                  onValidateTap(value);
                                 } catch (e){
                                   dialogState((){
                                     content = "Sorry! try again";
@@ -271,16 +262,14 @@ class CustomAlertDialog{
                                 }
                               }
                             },
-                            child: Text("Validate", style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.black, fontWeight: FontWeight.bold ),),
+                            child: Text("VALIDATE", style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.white,  ),),
                           ),
-                        ),
-                      ],
-                    )
-                  ],
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0)
-                ),
+                shape: alertShape,
               );
             },
           );
@@ -288,7 +277,7 @@ class CustomAlertDialog{
     );
   }
 
-  showStringAlert( BuildContext context, Function(String value) onSubmitTap, Function onCancelTap, {String title = "Enter Full Name", String hintText = "Enter Your Name"}) {
+  showStringAlert( BuildContext context, Function(String value) onSubmitTap, Function onCancelTap, {String title = "Enter full name", String hintText = "Enter your name"}) {
 
     String content = "";
     TextEditingController textEditingController = TextEditingController();
@@ -299,86 +288,92 @@ class CustomAlertDialog{
           return StatefulBuilder(
             builder: (context, dialogState){
               return AlertDialog(
-                backgroundColor: Colors.black45.withOpacity(0.5),
-                title: Text(title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),),
-                titlePadding: EdgeInsets.only(top: 15.0, bottom: 10.0),
-                contentPadding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    content != "" ? Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0),
-                      child: Text(content, style: Theme.of(context).textTheme.headline3,),
-                    ) : SizedBox(),
-                    TextFormField(
-                      controller: textEditingController,
-                      style: Theme.of(context).textTheme.headline2,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 15.0,),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              borderSide: BorderSide(
-                                  color: Colors.green,
-                                  width: 2.0
-                              )
-                          ),
-                          hintText: hintText,
-                          hintStyle: Theme.of(context).textTheme.headline2.copyWith(color: Colors.grey)
+                backgroundColor: bgColor,
+                contentPadding: contentPadding,
+                content: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Padding(
+                        padding: titlePadding,
+                        child: Text(title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline5.copyWith(),),
                       ),
-                    ),
-                    SizedBox(
-                      height: 15.0,
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: MaterialButton(
-                            padding: EdgeInsets.symmetric(vertical: 12.0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0)
+                      content != "" ? Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: Text(content, style: Theme.of(context).textTheme.headline3,),
+                      ) : SizedBox(),
+                      TextFormField(
+                        controller: textEditingController,
+                        style: Theme.of(context).textTheme.headline4.copyWith(color: Colors.black),
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(horizontal: 15.0,),
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
                             ),
-                            color: Colors.grey[200],
-                            onPressed: (){
-                              Navigator.of(context).pop();
-                              onCancelTap();
-                            },
-                            child: Text("Cancel", style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.black45, fontWeight: FontWeight.bold ),),
-                          ),
+                            filled: true,
+                            hintText: hintText,
+                            hintStyle: Theme.of(context).textTheme.headline2.copyWith(color: Colors.grey)
                         ),
-                        SizedBox(
-                          width: 5.0,
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: MaterialButton(
-                            padding: EdgeInsets.symmetric(vertical: 12.0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0)
-                            ),
-                            color: Colors.lightBlue[300],
-                            onPressed: (){
-                              if(textEditingController.text.isEmpty){
-                                dialogState((){
-                                  content = "Sorry! try again";
-                                });
-                              } else {
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: MaterialButton(
+                              padding: EdgeInsets.symmetric(vertical: 12.0),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0)
+                              ),
+                              color: buttonColor,
+                              onPressed: (){
                                 Navigator.of(context).pop();
-                                onSubmitTap(textEditingController.text);
-                              }
-                            },
-                            child: Text("Submit", style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.black, fontWeight: FontWeight.bold ),),
+                                onCancelTap();
+                              },
+                              child: Text("Cancel".toUpperCase(), style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.white,  ),),
+                            ),
                           ),
-                        )
-                      ],
-                    )
-                  ],
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: MaterialButton(
+                              padding: EdgeInsets.symmetric(vertical: 12.0),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0)
+                              ),
+                              color: Colors.lightBlue[300],
+                              onPressed: (){
+                                if(textEditingController.text.isEmpty){
+                                  dialogState((){
+                                    content = "Sorry! try again";
+                                  });
+                                } else {
+                                  if(textEditingController.text.contains(RegExp("[0-9]")) || textEditingController.text.length < 3){
+                                    dialogState((){
+                                      content = "Sorry! try again";
+                                    });
+                                  } else {
+                                    Navigator.of(context).pop();
+                                    onSubmitTap(textEditingController.text);
+                                  }
+                                }
+                              },
+                              child: Text("Submit".toUpperCase(), style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.white,  ),),
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0)
-                ),
+                shape: alertShape,
               );
             },
           );
@@ -390,9 +385,9 @@ class CustomAlertDialog{
       Function(String name, String email) onSubmitTap,
       Function onCancelTap,
       {
-        String title = "Enter Details",
+        String title = "Enter details",
         String content = "Enter your assessor email for requesting assessment",
-        List<String> hintText = const ["Enter Your Name", "Enter your assessor email"]
+        List<String> hintText = const ["Enter your name", "Enter your assessor email"]
       }) {
 
     String errorString = "";
@@ -405,115 +400,122 @@ class CustomAlertDialog{
           return StatefulBuilder(
             builder: (context, dialogState){
               return AlertDialog(
-                backgroundColor: Colors.black45.withOpacity(0.5),
-                title: Text(title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),),
-                titlePadding: EdgeInsets.only(top: 15.0, bottom: 10.0),
-                contentPadding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: Text(content, style: Theme.of(context).textTheme.headline3, textAlign: TextAlign.center,),
-                    ),
-                    errorString != "" ? Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0),
-                      child: Text(errorString, style: Theme.of(context).textTheme.headline3,),
-                    ) : SizedBox(),
-                    TextFormField(
-                      controller: nameTextEditingController,
-                      style: Theme.of(context).textTheme.headline2,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 15.0,),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              borderSide: BorderSide(
-                                  color: Colors.green,
-                                  width: 2.0
-                              )
-                          ),
-                          hintText: hintText[0],
-                          hintStyle: Theme.of(context).textTheme.headline2.copyWith(color: Colors.grey)
+                backgroundColor: bgColor,
+                // titlePadding: titlePadding,
+                contentPadding: contentPadding,
+                content: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Padding(
+                        padding: titlePadding,
+                        child: Text(title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline5.copyWith(),),
                       ),
-                    ),
-                    TextFormField(
-                      controller: emailTextEditingController,
-                      style: Theme.of(context).textTheme.headline2,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 15.0,),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              borderSide: BorderSide(
-                                  color: Colors.green,
-                                  width: 2.0
-                              )
-                          ),
-                          hintText: hintText[1],
-                          hintStyle: Theme.of(context).textTheme.headline2.copyWith(color: Colors.grey)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: Text(content, style: Theme.of(context).textTheme.headline3, textAlign: TextAlign.center,),
                       ),
-                    ),
-                    SizedBox(
-                      height: 15.0,
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: MaterialButton(
-                            padding: EdgeInsets.symmetric(vertical: 12.0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0)
+                      errorString != "" ? Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: Text(errorString, style: Theme.of(context).textTheme.headline3,),
+                      ) : SizedBox(),
+                      TextFormField(
+                        controller: nameTextEditingController,
+                        style: Theme.of(context).textTheme.headline4.copyWith(color: Colors.black),
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 15.0,),
+                            hintText: hintText[0],
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.vertical(top: Radius.circular(20.0), bottom: Radius.zero),
                             ),
-                            color: Colors.grey[200],
-                            onPressed: (){
-                              Navigator.of(context).pop();
-                              onCancelTap();
-                            },
-                            child: Text("Cancel", style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.black45, fontWeight: FontWeight.bold ),),
+                            filled: true,
+                            hintStyle: Theme.of(context).textTheme.headline2.copyWith(color: Colors.grey)
+                        ),
+                      ),
+                      TextFormField(
+                        controller: emailTextEditingController,
+                        style: Theme.of(context).textTheme.headline4.copyWith(color: Colors.black),
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 15.0,),
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.vertical(bottom: Radius.circular(20.0), top: Radius.zero),
+                            ),
+                            filled: true,
+                            hintText: hintText[1],
+                            hintStyle: Theme.of(context).textTheme.headline2.copyWith(color: Colors.grey)
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: MaterialButton(
+                              padding: EdgeInsets.symmetric(vertical: 12.0),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0)
+                              ),
+                              color: buttonColor,
+                              onPressed: (){
+                                Navigator.of(context).pop();
+                                onCancelTap();
+                              },
+                              child: Text("Cancel".toUpperCase(), style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.white,  ),),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 5.0,
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: MaterialButton(
-                            padding: EdgeInsets.symmetric(vertical: 12.0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0)
-                            ),
-                            color: Colors.lightBlue[300],
-                            onPressed: (){
-                              if(nameTextEditingController.text.isEmpty || emailTextEditingController.text.isEmpty){
-                                dialogState((){
-                                  errorString = "Sorry! try again";
-                                });
-                              } else {
-                                if(emailTextEditingController.text.contains(RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\$"))) {
-                                  Navigator.of(context).pop();
-                                  onSubmitTap(nameTextEditingController.text,
-                                      emailTextEditingController.text);
-                                }
-                                else {
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: MaterialButton(
+                              padding: EdgeInsets.symmetric(vertical: 12.0),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0)
+                              ),
+                              color: Colors.lightBlue[300],
+                              onPressed: (){
+                                if(nameTextEditingController.text.isEmpty || emailTextEditingController.text.isEmpty){
                                   dialogState((){
-                                    errorString = "Wrong Email Input";
+                                    errorString = "Sorry! try again";
                                   });
+                                } else {
+
+                                  if(emailTextEditingController.text.contains(RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\$"))) {
+
+                                    if(!nameTextEditingController.text.contains(RegExp("[0-9]"))  && nameTextEditingController.text.length >= 3){
+                                      Navigator.of(context).pop();
+                                      onSubmitTap(nameTextEditingController.text,
+                                          emailTextEditingController.text);
+                                    } else {
+                                      dialogState((){
+                                        errorString = "Sorry! try again";
+                                      });
+                                    }
+                                  }
+                                  else {
+                                    dialogState((){
+                                      errorString = "Wrong Email Input";
+                                    });
+                                  }
                                 }
-                              }
-                            },
-                            child: Text("Submit", style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.black, fontWeight: FontWeight.bold ),),
-                          ),
-                        )
-                      ],
-                    )
-                  ],
+                              },
+                              child: Text("Submit".toUpperCase(), style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.white,  ),),
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0)
-                ),
+                shape: alertShape,
               );
             },
           );
@@ -522,4 +524,19 @@ class CustomAlertDialog{
   }
 
 
+}
+
+class _SystemPadding extends StatelessWidget {
+  final Widget child;
+
+  _SystemPadding({Key key, this.child}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.of(context);
+    return new AnimatedContainer(
+        padding: mediaQuery.viewInsets,
+        duration: const Duration(milliseconds: 300),
+        child: child);
+  }
 }
