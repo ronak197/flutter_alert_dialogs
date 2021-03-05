@@ -11,16 +11,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: HomePage(),
-      theme: ThemeData(
-        textTheme: TextTheme(
-          headline6: TextStyle(color: Colors.white, fontSize: 19.0),
-          headline5: TextStyle(color: Colors.white, fontSize: 18.0),
-          headline4: TextStyle(color: Colors.white, fontSize: 17.0),
-          headline3: TextStyle(color: Colors.white, fontSize: 16.0),
-          headline2: TextStyle(color: Colors.white, fontSize: 15.0),
-          headline1: TextStyle(color: Colors.white, fontSize: 14.0)
-        )
-      ),
     );
   }
 }

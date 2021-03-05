@@ -30,14 +30,14 @@ class CustomAlertDialog{
       builder: (context){
          return AlertDialog(
            backgroundColor: bgColor,
-           title: Text(title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline6,),
+           title: Text(title, textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 19.0),),
            titlePadding: titlePadding,
            contentPadding: contentPadding,
            shape: alertShape,
            content: Column(
              mainAxisSize: MainAxisSize.min,
              children: [
-               Text(content, style: Theme.of(context).textTheme.headline3, textAlign: TextAlign.center,),
+               Text(content, style: TextStyle(color: Colors.white, fontSize: 16.0), textAlign: TextAlign.center,),
                SizedBox(
                  height: 15.0,
                ),
@@ -54,7 +54,7 @@ class CustomAlertDialog{
                          Navigator.of(context).pop();
                          onYesTap();
                        },
-                       child: Text("YES", style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.white,   ),),
+                       child: Text("YES", style: TextStyle(color: Colors.white, fontSize: 16.0).copyWith(color: Colors.white,   ),),
                      ),
                    ),
                    Padding(
@@ -72,7 +72,7 @@ class CustomAlertDialog{
                          Navigator.of(context).pop();
                          onNoTap();
                        },
-                       child: Text("NO", style: Theme.of(context).textTheme.headline3.copyWith( )),
+                       child: Text("NO", style: TextStyle(color: Colors.white, fontSize: 16.0).copyWith( )),
                      ),
                    ),
                  ],
@@ -90,7 +90,7 @@ class CustomAlertDialog{
         builder: (context){
           return AlertDialog(
             backgroundColor: bgColor,
-            title: Text(title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline4,),
+            title: Text(title, textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 17.0),),
             titlePadding: titlePadding,
             contentPadding: contentPadding,
             shape: alertShape,
@@ -106,7 +106,7 @@ class CustomAlertDialog{
                   Navigator.of(context).pop();
                   onOkTap();
                 },
-                child: Text("OK", style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.white,  ),),
+                child: Text("OK", style: TextStyle(color: Colors.white, fontSize: 16.0).copyWith(color: Colors.white,  ),),
               )
             ],
           )
@@ -121,14 +121,14 @@ class CustomAlertDialog{
         builder: (context){
           return AlertDialog(
             backgroundColor: bgColor,
-            title: Text(title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline5.copyWith(),),
+            title: Text(title, textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 18.0).copyWith(),),
             titlePadding: titlePadding,
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
               Padding(
                 padding: contentPadding,
-                child: Text(content, style: Theme.of(context).textTheme.headline3, textAlign: TextAlign.center,),
+                child: Text(content, style: TextStyle(color: Colors.white, fontSize: 16.0), textAlign: TextAlign.center,),
               ),
               MaterialButton(
                 padding: buttonPadding,
@@ -138,7 +138,7 @@ class CustomAlertDialog{
                   Navigator.of(context).pop();
                   onOkTap();
                 },
-                child: Text("OK", style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.white,  ),),
+                child: Text("OK", style: TextStyle(color: Colors.white, fontSize: 16.0).copyWith(color: Colors.white,  ),),
               )
             ],
           ),
@@ -154,14 +154,14 @@ class CustomAlertDialog{
         builder: (context){
           return AlertDialog(
             backgroundColor: bgColor,
-            title: Text(title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline5.copyWith(),),
+            title: Text(title, textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 18.0).copyWith(),),
             titlePadding: titlePadding,
             contentPadding: contentPadding,
             shape: alertShape,
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(content, style: Theme.of(context).textTheme.headline3, textAlign: TextAlign.center,),
+                Text(content, style: TextStyle(color: Colors.white, fontSize: 16.0), textAlign: TextAlign.center,),
                 SizedBox(
                   height: 10.0,
                 ),
@@ -180,7 +180,7 @@ class CustomAlertDialog{
                             Navigator.of(context).pop();
                             clickActions[index]();
                           },
-                          child: Text(actions[index].toUpperCase(), style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.white, fontSize: 13.0 ), textAlign: TextAlign.center, maxLines: 1,),
+                          child: Text(actions[index].toUpperCase(), style: TextStyle(color: Colors.white, fontSize: 16.0).copyWith(color: Colors.white, fontSize: 13.0 ), textAlign: TextAlign.center, maxLines: 1,),
                         ),
                       ),
                     );
@@ -212,17 +212,17 @@ class CustomAlertDialog{
                     children: [
                       Padding(
                         padding: titlePadding,
-                        child: Text(title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline5.copyWith(),),
+                        child: Text(title, textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 18.0).copyWith(),),
                       ),
                       content != "" ? Padding(
                         padding: const EdgeInsets.only(bottom: 10.0),
-                        child: Text(content, style: Theme.of(context).textTheme.headline3,),
+                        child: Text(content, style: TextStyle(color: Colors.white, fontSize: 16.0),),
                       ) : SizedBox(
                         height: 10.0,
                       ),
                       TextField(
                         controller: textEditingController,
-                        style: Theme.of(context).textTheme.headline4.copyWith(color: Colors.black),
+                        style: TextStyle(color: Colors.white, fontSize: 17.0).copyWith(color: Colors.black),
                         keyboardType: TextInputType.numberWithOptions(decimal: false, signed: true),
                         decoration: InputDecoration(
                           fillColor: Colors.white,
@@ -232,7 +232,7 @@ class CustomAlertDialog{
                           filled: true,
                           contentPadding: EdgeInsets.symmetric(horizontal: 15.0,),
                           hintText: "Enter a value",
-                          hintStyle: Theme.of(context).textTheme.headline2.copyWith(color: Colors.grey)
+                          hintStyle: TextStyle(color: Colors.white, fontSize: 15.0).copyWith(color: Colors.grey)
                         ),
                       ),
                       SizedBox(
@@ -262,7 +262,7 @@ class CustomAlertDialog{
                                 }
                               }
                             },
-                            child: Text("VALIDATE", style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.white,  ),),
+                            child: Text("VALIDATE", style: TextStyle(color: Colors.white, fontSize: 16.0).copyWith(color: Colors.white,  ),),
                           ),
                         ],
                       )
@@ -296,15 +296,15 @@ class CustomAlertDialog{
                     children: [
                       Padding(
                         padding: titlePadding,
-                        child: Text(title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline5.copyWith(),),
+                        child: Text(title, textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 18.0).copyWith(),),
                       ),
                       content != "" ? Padding(
                         padding: const EdgeInsets.only(bottom: 10.0),
-                        child: Text(content, style: Theme.of(context).textTheme.headline3,),
+                        child: Text(content, style: TextStyle(color: Colors.white, fontSize: 16.0),),
                       ) : SizedBox(),
                       TextFormField(
                         controller: textEditingController,
-                        style: Theme.of(context).textTheme.headline4.copyWith(color: Colors.black),
+                        style: TextStyle(color: Colors.white, fontSize: 17.0).copyWith(color: Colors.black),
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.symmetric(horizontal: 15.0,),
@@ -314,7 +314,7 @@ class CustomAlertDialog{
                             ),
                             filled: true,
                             hintText: hintText,
-                            hintStyle: Theme.of(context).textTheme.headline2.copyWith(color: Colors.grey)
+                            hintStyle: TextStyle(color: Colors.white, fontSize: 15.0).copyWith(color: Colors.grey)
                         ),
                       ),
                       SizedBox(
@@ -335,7 +335,7 @@ class CustomAlertDialog{
                                 Navigator.of(context).pop();
                                 onCancelTap();
                               },
-                              child: Text("Cancel".toUpperCase(), style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.white,  ),),
+                              child: Text("Cancel".toUpperCase(), style: TextStyle(color: Colors.white, fontSize: 16.0).copyWith(color: Colors.white,  ),),
                             ),
                           ),
                           SizedBox(
@@ -365,7 +365,7 @@ class CustomAlertDialog{
                                   }
                                 }
                               },
-                              child: Text("Submit".toUpperCase(), style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.white,  ),),
+                              child: Text("Submit".toUpperCase(), style: TextStyle(color: Colors.white, fontSize: 16.0).copyWith(color: Colors.white,  ),),
                             ),
                           )
                         ],
@@ -409,19 +409,19 @@ class CustomAlertDialog{
                     children: [
                       Padding(
                         padding: titlePadding,
-                        child: Text(title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline5.copyWith(),),
+                        child: Text(title, textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 18.0).copyWith(),),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
-                        child: Text(content, style: Theme.of(context).textTheme.headline3, textAlign: TextAlign.center,),
+                        child: Text(content, style: TextStyle(color: Colors.white, fontSize: 16.0), textAlign: TextAlign.center,),
                       ),
                       errorString != "" ? Padding(
                         padding: const EdgeInsets.only(bottom: 10.0),
-                        child: Text(errorString, style: Theme.of(context).textTheme.headline3,),
+                        child: Text(errorString, style: TextStyle(color: Colors.white, fontSize: 16.0),),
                       ) : SizedBox(),
                       TextFormField(
                         controller: nameTextEditingController,
-                        style: Theme.of(context).textTheme.headline4.copyWith(color: Colors.black),
+                        style: TextStyle(color: Colors.white, fontSize: 17.0).copyWith(color: Colors.black),
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(horizontal: 15.0,),
@@ -431,12 +431,12 @@ class CustomAlertDialog{
                               borderRadius: BorderRadius.vertical(top: Radius.circular(20.0), bottom: Radius.zero),
                             ),
                             filled: true,
-                            hintStyle: Theme.of(context).textTheme.headline2.copyWith(color: Colors.grey)
+                            hintStyle: TextStyle(color: Colors.white, fontSize: 15.0).copyWith(color: Colors.grey)
                         ),
                       ),
                       TextFormField(
                         controller: emailTextEditingController,
-                        style: Theme.of(context).textTheme.headline4.copyWith(color: Colors.black),
+                        style: TextStyle(color: Colors.white, fontSize: 17.0).copyWith(color: Colors.black),
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(horizontal: 15.0,),
@@ -446,7 +446,7 @@ class CustomAlertDialog{
                             ),
                             filled: true,
                             hintText: hintText[1],
-                            hintStyle: Theme.of(context).textTheme.headline2.copyWith(color: Colors.grey)
+                            hintStyle: TextStyle(color: Colors.white, fontSize: 15.0).copyWith(color: Colors.grey)
                         ),
                       ),
                       SizedBox(
@@ -467,7 +467,7 @@ class CustomAlertDialog{
                                 Navigator.of(context).pop();
                                 onCancelTap();
                               },
-                              child: Text("Cancel".toUpperCase(), style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.white,  ),),
+                              child: Text("Cancel".toUpperCase(), style: TextStyle(color: Colors.white, fontSize: 16.0).copyWith(color: Colors.white,  ),),
                             ),
                           ),
                           SizedBox(
@@ -507,7 +507,7 @@ class CustomAlertDialog{
                                   }
                                 }
                               },
-                              child: Text("Submit".toUpperCase(), style: Theme.of(context).textTheme.headline3.copyWith(color: Colors.white,  ),),
+                              child: Text("Submit".toUpperCase(), style: TextStyle(color: Colors.white, fontSize: 16.0).copyWith(color: Colors.white,  ),),
                             ),
                           )
                         ],
